@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      // Debugging Kotlin in VS Code works by attaching to the JVM Gradle starts.
+      // 1. Run the task "Debug a lesson (waits for the debugger on port 5005)"
+      // 2. Start this configuration (F5)
+      // Needs the "Extension Pack for Java" extension.
+      "type": "java",
+      "name": "Attach to a running lesson (port 5005)",
+      "request": "attach",
+      "hostName": "localhost",
+      "port": 5005
+    }
+  ]
+}

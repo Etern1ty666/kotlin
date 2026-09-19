@@ -1,0 +1,82 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run a lesson",
+      "detail": "Pick a lesson and run it in the terminal",
+      "type": "shell",
+      "command": "./gradlew",
+      "args": ["${input:lesson}", "-q", "--console=plain"],
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true,
+        "focus": true
+      }
+    },
+    {
+      "label": "List lessons",
+      "type": "shell",
+      "command": "./gradlew",
+      "args": ["lessons", "-q", "--console=plain"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true }
+    },
+    {
+      "label": "Compile everything",
+      "type": "shell",
+      "command": "./gradlew",
+      "args": ["build", "--console=plain"],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true }
+    },
+    {
+      "label": "Debug a lesson (waits for the debugger on port 5005)",
+      "type": "shell",
+      "command": "./gradlew",
+      "args": ["${input:lesson}", "--console=plain", "--debug-jvm"],
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "lesson",
+      "type": "pickString",
+      "description": "Which lesson?",
+      "default": "lesson01",
+      "options": [
+        { "label": "01 - Introduction", "value": "lesson01" },
+        { "label": "02 - Variables", "value": "lesson02" },
+        { "label": "03 - Math operations", "value": "lesson03" },
+        { "label": "04 - Conditions: if-else, when", "value": "lesson04" },
+        { "label": "05 - Loops", "value": "lesson05" },
+        { "label": "06 - Arrays", "value": "lesson06" },
+        { "label": "07 - Strings and input", "value": "lesson07" },
+        { "label": "08 - Functions", "value": "lesson08" },
+        { "label": "09 - Practice: grades", "value": "lesson09" },
+        { "label": "10 - Null safety", "value": "lesson10" },
+        { "label": "11 - Classes and objects", "value": "lesson11" },
+        { "label": "12 - Constructors", "value": "lesson12" },
+        { "label": "13 - Inheritance", "value": "lesson13" },
+        { "label": "14 - Visibility modifiers", "value": "lesson14" },
+        { "label": "15 - Abstract classes and interfaces", "value": "lesson15" },
+        { "label": "16 - Practice: employee hierarchy", "value": "lesson16" },
+        { "label": "17 - Memory, == and ===", "value": "lesson17" },
+        { "label": "18 - Any: toString()", "value": "lesson18" },
+        { "label": "19 - Any: equals() and hashCode()", "value": "lesson19" },
+        { "label": "20 - Polymorphism", "value": "lesson20" },
+        { "label": "21 - Exceptions", "value": "lesson21" },
+        { "label": "22 - Extension functions", "value": "lesson22" },
+        { "label": "23 - Generics", "value": "lesson23" },
+        { "label": "24 - Collections: List", "value": "lesson24" },
+        { "label": "25 - Encapsulation", "value": "lesson25" },
+        { "label": "26 - Collections: Map", "value": "lesson26" },
+        { "label": "27 - Collections: Set", "value": "lesson27" },
+        { "label": "28 - Final task: to-do list", "value": "lesson28" }
+      ]
+    }
+  ]
+}
