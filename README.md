@@ -40,8 +40,12 @@ There are three ways to run a lesson, easiest first.
 
 ### 1. Shift+Cmd+B
 
-*Terminal → Run Build Task* (or **⇧⌘B**) → pick a lesson from the list.
-It runs in the integrated terminal. Works with no extensions at all.
+Open a `.kt` file and press **⇧⌘B** (*Terminal → Run Build Task*) — it runs
+**the file you are looking at**, in the integrated terminal. Works with no
+extensions at all.
+
+The same menu has *Run a lesson*, which asks you to pick one from a list
+instead.
 
 ### 2. The Gradle panel
 
@@ -86,9 +90,39 @@ outside a real terminal, so there is nowhere to type.
 
 ## Adding a lesson
 
-Drop a new file into `app/src/main/kotlin/lessons/` named `LessonNNSomething.kt`
-with `package lessonNN` and a `fun main()`. The `lessonNN` Gradle task appears
-on its own — the build script scans the folder.
+Drop a file into `app/src/main/kotlin/lessons/` with a `fun main()` in it.
+The build script scans that folder, so the task appears on its own:
+
+| File | Task |
+|------|------|
+| `Lesson29Coroutines.kt` | `./gradlew lesson29` |
+| `main.kt` | `./gradlew runMain` |
+| `Scratch.kt` | `./gradlew runScratch` |
+
+Anything named `LessonNN…` becomes `lessonNN`; everything else gets a `run`
+prefix, so a file called `Build.kt` cannot collide with Gradle's own `build`
+task. Give the file a `package` of its own if it declares names that already
+exist elsewhere — see the note on packages below.
+
+Or skip the task names entirely and run a file by name:
+
+```bash
+./gradlew runFile -Pfile=main.kt
+```
+
+That is what **⇧⌘B** uses under the hood.
+
+## A word on `package`
+
+Each lesson file starts with its own `package` line. It is not required by
+Kotlin — a file without one still compiles — but here it is doing real work:
+the course reuses names (`Student` in lessons 12 and 24, `Circle` in 15 and
+20, and 28 functions called `main`), and two declarations with the same name
+cannot live in the same package. Separate packages keep them apart.
+
+The package also decides the class name the JVM sees, which is what the
+Gradle task and `launch.json` point at: `Lesson05Loops.kt` with
+`package lesson05` becomes `lesson05.Lesson05LoopsKt`.
 
 ## What is where
 

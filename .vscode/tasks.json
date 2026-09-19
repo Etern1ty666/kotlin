@@ -2,12 +2,27 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Run the file I am editing",
+      "detail": "Runs whichever .kt file is open in the editor",
+      "type": "shell",
+      "command": "./gradlew",
+      "args": ["runFile", "-Pfile=${fileBasename}", "-q", "--console=plain"],
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true,
+        "focus": true
+      }
+    },
+    {
       "label": "Run a lesson",
       "detail": "Pick a lesson and run it in the terminal",
       "type": "shell",
       "command": "./gradlew",
       "args": ["${input:lesson}", "-q", "--console=plain"],
-      "group": { "kind": "build", "isDefault": true },
+      "group": "build",
       "problemMatcher": [],
       "presentation": {
         "reveal": "always",
