@@ -1,4 +1,19 @@
 {
+  // The `java` on this machine is version 8, but Gradle 9 needs 17 or newer.
+  // The terminal is fine (gradlew starts its own JDK 21), but the Gradle
+  // extension spawns Gradle itself, so it has to be told where a modern JDK is.
+  // Change this path if you move or remove that JDK.
+  "java.import.gradle.java.home": "/opt/homebrew/opt/openjdk@25/libexec/openjdk.jdk/Contents/Home",
+  "java.jdt.ls.java.home": "/opt/homebrew/opt/openjdk@25/libexec/openjdk.jdk/Contents/Home",
+  "kotlin.java.home": "/opt/homebrew/opt/openjdk@25/libexec/openjdk.jdk/Contents/Home",
+
+  // same thing for anything you run by hand in the integrated terminal
+  "terminal.integrated.env.osx": {
+    "JAVA_HOME": "/opt/homebrew/opt/openjdk@25/libexec/openjdk.jdk/Contents/Home"
+  },
+
+  "gradle.nestedProjects": true,
+
   "files.exclude": {
     "**/.gradle": true,
     "**/build": true,

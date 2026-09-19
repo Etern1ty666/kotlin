@@ -33,25 +33,44 @@ minute; after that it is instant.
 
 ## Running from VS Code
 
-1. Open this folder in VS Code.
-2. Accept the recommended extensions when prompted (`.vscode/extensions.json`):
-   - **Kotlin** (`fwcd.kotlin`) — highlighting and completion
-   - **Gradle for Java** (`vscjava.vscode-gradle`) — a Gradle panel where every
-     `lessonNN` task has a ▶ button next to it
-3. Run a lesson either way:
-   - **⇧⌘B** (or *Terminal → Run Build Task*) → pick a lesson from the list
-   - or open the Gradle panel in the sidebar → `app` → *Tasks* → *lessons* →
-     click ▶ on `lesson05`
+Open **this** folder (`kotlin/first`) in VS Code — not the folder above it,
+otherwise VS Code never sees `.vscode/` and nothing below will show up.
 
-### Debugging
+There are three ways to run a lesson, easiest first.
 
-VS Code cannot launch Kotlin directly, so you attach to the JVM instead:
+### 1. Shift+Cmd+B
 
-1. *Terminal → Run Task* → **Debug a lesson** → pick a lesson.
-   It prints `Listening for transport dt_socket at address: 5005` and waits.
-2. Press **F5** and choose *Attach to a running lesson (port 5005)*.
+*Terminal → Run Build Task* (or **⇧⌘B**) → pick a lesson from the list.
+It runs in the integrated terminal. Works with no extensions at all.
 
-Needs the *Extension Pack for Java* extension.
+### 2. The Gradle panel
+
+Install **Gradle for Java** (`vscjava.vscode-gradle`), then click the elephant
+icon in the left sidebar:
+
+```
+GRADLE PROJECTS
+└── kotlin-lessons
+    └── app
+        └── Tasks
+            └── lessons
+                ├── lesson01   ▶
+                ├── lesson02   ▶
+                └── ...
+```
+
+Hover a task and press ▶.
+
+If the panel stays empty, it is the JDK: the `java` on this machine is
+version 8 and Gradle 9 needs 17 or newer. `.vscode/settings.json` points the
+extension at a newer JDK — check that the path in `java.import.gradle.java.home`
+still exists on your machine, then *Developer: Reload Window*.
+
+### 3. F5
+
+Press **F5** and pick a lesson. This uses the debug adapter bundled with the
+**Kotlin** extension (`fwcd.kotlin`) — the first run downloads it, which takes
+a couple of minutes. Breakpoints work here; the other two ways just run.
 
 ## Lessons that ask for input
 
@@ -61,6 +80,9 @@ The Gradle tasks forward your terminal input, so just run them and type:
 ```bash
 ./gradlew lesson28 -q --console=plain
 ```
+
+**⇧⌘B** works for these too. The Gradle panel's ▶ does not — it runs tasks
+outside a real terminal, so there is nowhere to type.
 
 ## Adding a lesson
 

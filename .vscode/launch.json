@@ -2,15 +2,53 @@
   "version": "0.2.0",
   "configurations": [
     {
-      // Debugging Kotlin in VS Code works by attaching to the JVM Gradle starts.
-      // 1. Run the task "Debug a lesson (waits for the debugger on port 5005)"
-      // 2. Start this configuration (F5)
-      // Needs the "Extension Pack for Java" extension.
-      "type": "java",
-      "name": "Attach to a running lesson (port 5005)",
-      "request": "attach",
-      "hostName": "localhost",
-      "port": 5005
+      // F5 -> pick a lesson. Uses the debug adapter that comes with the
+      // Kotlin extension (fwcd.kotlin); the first run downloads it, which
+      // takes a while. If it misbehaves, use the Gradle panel or SHIFT+CMD+B
+      // instead - those do not depend on it.
+      "type": "kotlin",
+      "request": "launch",
+      "name": "Run a lesson (F5)",
+      "projectRoot": "${workspaceFolder}",
+      "mainClass": "${input:lessonMainClass}"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "lessonMainClass",
+      "type": "pickString",
+      "description": "Which lesson?",
+      "default": "lesson01.Lesson01IntroKt",
+      "options": [
+        { "label": "01 - Introduction", "value": "lesson01.Lesson01IntroKt" },
+        { "label": "02 - Variables", "value": "lesson02.Lesson02VariablesKt" },
+        { "label": "03 - Math operations", "value": "lesson03.Lesson03MathKt" },
+        { "label": "04 - Conditions", "value": "lesson04.Lesson04ConditionsKt" },
+        { "label": "05 - Loops", "value": "lesson05.Lesson05LoopsKt" },
+        { "label": "06 - Arrays", "value": "lesson06.Lesson06ArraysKt" },
+        { "label": "07 - Strings and input", "value": "lesson07.Lesson07StringsAndInputKt" },
+        { "label": "08 - Functions", "value": "lesson08.Lesson08FunctionsKt" },
+        { "label": "09 - Practice: grades", "value": "lesson09.Lesson09PracticeKt" },
+        { "label": "10 - Null safety", "value": "lesson10.Lesson10NullSafetyKt" },
+        { "label": "11 - Classes and objects", "value": "lesson11.Lesson11ClassesKt" },
+        { "label": "12 - Constructors", "value": "lesson12.Lesson12ConstructorsKt" },
+        { "label": "13 - Inheritance", "value": "lesson13.Lesson13InheritanceKt" },
+        { "label": "14 - Visibility modifiers", "value": "lesson14.Lesson14VisibilityKt" },
+        { "label": "15 - Abstract classes and interfaces", "value": "lesson15.Lesson15AbstractAndInterfacesKt" },
+        { "label": "16 - Practice: employees", "value": "lesson16.Lesson16PracticeKt" },
+        { "label": "17 - Memory, == and ===", "value": "lesson17.Lesson17MemoryKt" },
+        { "label": "18 - Any: toString()", "value": "lesson18.Lesson18ToStringKt" },
+        { "label": "19 - Any: equals() and hashCode()", "value": "lesson19.Lesson19EqualsHashCodeKt" },
+        { "label": "20 - Polymorphism", "value": "lesson20.Lesson20PolymorphismKt" },
+        { "label": "21 - Exceptions", "value": "lesson21.Lesson21ExceptionsKt" },
+        { "label": "22 - Extension functions", "value": "lesson22.Lesson22ExtensionsKt" },
+        { "label": "23 - Generics", "value": "lesson23.Lesson23GenericsKt" },
+        { "label": "24 - Collections: List", "value": "lesson24.Lesson24ListCollectionKt" },
+        { "label": "25 - Encapsulation", "value": "lesson25.Lesson25EncapsulationKt" },
+        { "label": "26 - Collections: Map", "value": "lesson26.Lesson26MapCollectionKt" },
+        { "label": "27 - Collections: Set", "value": "lesson27.Lesson27SetCollectionKt" },
+        { "label": "28 - Final task: to-do list", "value": "lesson28.Lesson28TodoListKt" }
+      ]
     }
   ]
 }
